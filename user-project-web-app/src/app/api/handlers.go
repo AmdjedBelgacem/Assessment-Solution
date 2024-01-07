@@ -7,14 +7,15 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
-	"github.com/jinzhu/gorm"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
 )
 
 var db *gorm.DB
 var err error
 
 func init() {
-	db, err = gorm.Open("sqlite3", "crud.db")
+	db, err = gorm.Open(sqlite.Open("user.db"), &gorm.Config{})
 	if err != nil {
 		fmt.Println(err)
 	}
