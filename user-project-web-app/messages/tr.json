@@ -1,0 +1,14 @@
+{
+  "MasterView": {
+    "title": "Kullanıcı Listesi",
+    "ID": "ID",
+    "FullName": "Tam Adı",
+    "Email": "E-posta",
+    "CreatedAt": "Oluşturulma Tarihi",
+    "UpdatedAt": "Güncelleme Tarihi ",
+    "Operations": "İşlemler",
+    "New": "Yn",
+    "Edit": "Dzn",
+    "Delete": "Sil"
+  }
+}

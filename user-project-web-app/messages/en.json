@@ -1,0 +1,14 @@
+{
+  "MasterView": {
+    "title": "List Of Users",
+    "ID": "ID",
+    "FullName": "Full name",
+    "Email": "Email",
+    "CreatedAt": "Created At",
+    "UpdatedAt": "Updated At",
+    "Operations": "Operations",
+    "New": "New",
+    "Edit": "Edit",
+    "Delete": "Delete"
+  }
+}

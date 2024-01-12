@@ -1,0 +1,14 @@
+{
+  "MasterView": {
+    "title": "Liste Des Utilisateurs",
+    "ID": "ID",
+    "FullName": "Nom complet",
+    "Email": "Courriel ",
+    "CreatedAt": "Date de création",
+    "UpdatedAt": "Date de mise à jour",
+    "Operations": "Opérations",
+    "New": "Nv",
+    "Edit": "Modif",
+    "Delete": "Supp"
+  }
+}
