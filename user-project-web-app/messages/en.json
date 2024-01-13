@@ -8,7 +8,7 @@
     "New": "New",
     "Edit": "Edit",
     "Delete": "Delete",
-    "NoUser": "No Users With Such Name"
+    "NoUser": "Aucun utilisateur trouvé"
   },
   "DetailedView": {
     "ID": "ID",
@@ -20,7 +20,14 @@
     "EditAUser": "Edit A User",
     "DeleteAUser": "Delete A User",
     "CreateAUser": "Create A User",
-    "Delete": "Delete"
+    "Delete": "Delete",
+    "Username": "Username",
+    "Gender": "Gender",
+    "BirthDate": "Birth Date",
+    "PhoneNumber": "Phone Number",
+    "Male": "Male",
+    "Female": "Female",
+    "NotAssigned": "Not Assigned"
   },
   "NotFound": {
     "NotFound": "The Page You are looking for Does not exist",

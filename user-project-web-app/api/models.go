@@ -6,6 +6,10 @@ import (
 
 type User struct {
 	gorm.Model
-	Username string `gorm:"unique_index"`
-	Email    string `gorm:"unique_index"`
+	Username    string `gorm:"unique_index"`
+	FullName    string
+	Email       string `gorm:"unique_index"`
+	Gender      string
+	BirthDate   string
+	PhoneNumber string
 }

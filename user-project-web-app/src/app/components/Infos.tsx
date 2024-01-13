@@ -8,7 +8,11 @@ export default function Infos({
   user: {
     ID: number;
     Username: string;
+    FullName: string;
     Email: string;
+    Gender: string;
+    BirthDate: string;
+    PhoneNumber: string;
     CreatedAt?: string;
     UpdatedAt?: string;
   };
@@ -18,6 +22,13 @@ export default function Infos({
     email: string;
   };
   dTranslations: {
+    username: string;
+    gender: string;
+    birthDate: string;
+    phoneNumber: string;
+    male: string;
+    female: string;
+    notAssigned: string;
     createdAt: string;
     lastUpdated: string;
     Back: string;
@@ -37,12 +48,28 @@ export default function Infos({
           <p className={`${styles.p}`}>{user.ID}</p>
         </li>
         <li className={`${styles.li} font-semibold`}>
-          <p className={`${styles.p} font-bold`}>{mTranslations.fullName} </p>
+          <p className={`${styles.p} font-bold`}>{dTranslations.username} </p>
           <p className={`${styles.p}`}>{user.Username}</p>
+        </li>
+        <li className={`${styles.li} font-semibold`}>
+          <p className={`${styles.p} font-bold`}>{mTranslations.fullName} </p>
+          <p className={`${styles.p}`}>{user.FullName}</p>
         </li>
         <li className={`${styles.li} font-semibold`}>
           <p className={`${styles.p} font-bold`}>{mTranslations.email} </p>
           <p className={`${styles.p}`}>{user.Email}</p>
+        </li>
+        <li className={`${styles.li} font-semibold`}>
+          <p className={`${styles.p} font-bold`}>{dTranslations.gender} </p>
+          <p className={`${styles.p}`}>{user.Gender}</p>
+        </li>
+        <li className={`${styles.li} font-semibold`}>
+          <p className={`${styles.p} font-bold`}>{dTranslations.birthDate} </p>
+          <p className={`${styles.p}`}>{user.BirthDate}</p>
+        </li>
+        <li className={`${styles.li} font-semibold`}>
+          <p className={`${styles.p} font-bold`}>{dTranslations.phoneNumber} </p>
+          <p className={`${styles.p}`}>{user.PhoneNumber}</p>
         </li>
         <li className={`${styles.li}`}>
           <p className={`${styles.p} font-bold`}>{dTranslations.createdAt}</p>

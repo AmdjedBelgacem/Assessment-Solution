@@ -8,7 +8,11 @@ import Image from "next/image";
 
 interface FormData {
   Username: string;
+  FullName: string;
   Email: string;
+  Gender: string;
+  BirthDate: string;
+  PhoneNumber: string;
 }
 
 export default function Edit({
@@ -24,6 +28,13 @@ export default function Edit({
     email: string;
   };
   dTranslations: {
+    username: string;
+    gender: string;
+    birthDate: string;
+    phoneNumber: string;
+    male: string;
+    female: string;
+    notAssigned: string;
     createdAt: string;
     lastUpdated: string;
     EditAUser: string;
@@ -39,7 +50,11 @@ export default function Edit({
   );
   const [formData, setFormData] = useState<FormData>({
     Username: "",
+    FullName: "",
     Email: "",
+    Gender: "",
+    BirthDate: "",
+    PhoneNumber: "",
   });
 
   const styles = {
@@ -54,6 +69,8 @@ export default function Edit({
     button:
       "bg-green-500/90 p-2 rounded-xl font-semibold hover:bg-green-600 transition duration-300 ease-in-out text-white backdrop-blur-lg",
     loading: "h-full w-full flex justify-center items-center",
+    genderContainer: "flex w-full justify-around font-medium",
+    genderInnerContainer: "flex gap-x-2 items-center",
   };
 
   return (
@@ -81,18 +98,19 @@ export default function Edit({
             className={styles.form}
           >
             <div className={`${styles.inputContainer}`}>
-              <label htmlFor="email" className={styles.label}>
+              <label htmlFor="FullName" className={`${styles.label}`}>
                 {mTranslations.fullName}
               </label>
               <input
                 type="text"
-                name="Username"
-                placeholder="Username"
-                id="email"
-                className={`${styles.input}`}
+                name="FullName"
+                id="FullName"
+                value={formData.FullName}
                 onChange={(e) =>
-                  setFormData({ ...formData, Username: e.target.value })
+                  setFormData({ ...formData, FullName: e.target.value })
                 }
+                placeholder="John Doe"
+                className={`${styles.input}`}
                 required
               />
             </div>
@@ -104,11 +122,89 @@ export default function Edit({
                 type="email"
                 name="Email"
                 id="email"
-                placeholder="Email"
                 className={`${styles.input}`}
                 onChange={(e) =>
                   setFormData({ ...formData, Email: e.target.value })
                 }
+                placeholder="example@gmail.com"
+                required
+              />
+            </div>
+            <div className={`${styles.inputContainer}`}>
+              <label htmlFor="gender" className={styles.label}>
+                {dTranslations.gender}
+              </label>
+              <div id="gender" className={styles.genderContainer}>
+                <div className={styles.genderInnerContainer}>
+                  <input
+                    type="radio"
+                    id="male"
+                    name="gender"
+                    value="male"
+                    onChange={(e) =>
+                      setFormData({ ...formData, Gender: e.target.value })
+                    }
+                  />
+                  <label htmlFor="male">{dTranslations.male}</label>
+                </div>
+                <div className={styles.genderInnerContainer}>
+                  <input
+                    type="radio"
+                    id="female"
+                    name="gender"
+                    value="female"
+                    onChange={(e) =>
+                      setFormData({ ...formData, Gender: e.target.value })
+                    }
+                  />
+                  <label htmlFor="female">{dTranslations.female}</label>
+                </div>
+                <div className={styles.genderInnerContainer}>
+                  <input
+                    type="radio"
+                    id="notAssigned"
+                    name="gender"
+                    value="notAssigned"
+                    onChange={(e) =>
+                      setFormData({ ...formData, Gender: e.target.value })
+                    }
+                  />
+                  <label htmlFor="notAssigned">
+                    {dTranslations.notAssigned}
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div className={`${styles.inputContainer}`}>
+              <label htmlFor="BirthDate" className={`${styles.label}`}>
+                {dTranslations.birthDate}
+              </label>
+              <input
+                type="date"
+                name="BirthDate"
+                id="BirthDate"
+                value={formData.BirthDate}
+                onChange={(e) =>
+                  setFormData({ ...formData, BirthDate: e.target.value })
+                }
+                className={`${styles.input}`}
+                required
+              />
+            </div>
+            <div className={`${styles.inputContainer}`}>
+              <label htmlFor="PhoneNumber" className={`${styles.label}`}>
+                {dTranslations.phoneNumber}
+              </label>
+              <input
+                type="text"
+                name="PhoneNumber"
+                id="PhoneNumber"
+                value={formData.PhoneNumber}
+                onChange={(e) =>
+                  setFormData({ ...formData, PhoneNumber: e.target.value })
+                }
+                className={`${styles.input}`}
+                placeholder="+90 123 456 7890"
                 required
               />
             </div>

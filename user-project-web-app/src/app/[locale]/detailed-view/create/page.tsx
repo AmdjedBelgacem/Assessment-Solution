@@ -11,6 +11,13 @@ export default function Page() {
 
   const d = useTranslations("DetailedView");
   const dTranslations = {
+    username: d("Username"),
+    gender: d("Gender"),
+    birthDate: d("BirthDate"),
+    phoneNumber: d("PhoneNumber"),
+    male: d("Male"),
+    female: d("Female"),
+    notAssigned: d("NotAssigned"),
     createAUser: d("CreateAUser"),
     Back: d("Back"),
   };

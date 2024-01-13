@@ -17,6 +17,13 @@ export default function Page({
 
   const d = useTranslations("DetailedView");
   const dTranslations = {
+    username: d("Username"),
+    gender: d("Gender"),
+    birthDate: d("BirthDate"),
+    phoneNumber: d("PhoneNumber"),
+    male: d("Male"),
+    female: d("Female"),
+    notAssigned: d("NotAssigned"),
     createdAt: d("CreatedAt"),
     lastUpdated: d("LastUpdated"),
     EditAUser: d("EditAUser"),

@@ -8,7 +8,7 @@
     "New": "Yn",
     "Edit": "Dzn",
     "Delete": "Sil",
-    "NoUser": "Bu İsimde Kullanıcı Bulunamadı"
+    "NoUser": "Kullanıcı Bulunamadı"
   },
   "DetailedView": {
     "CreatedAt": "Oluşturulma Tarihi",
@@ -19,7 +19,14 @@
     "EditAUser": "Kullanıcı Düzenle",
     "DeleteAUser": "Kullanıcı Sil",
     "CreateAUser": "Kullanıcı Oluştur",
-    "Delete": "Sil"
+    "Delete": "Sil",
+    "Username": "Kullanıcı Adı",
+    "Gender": "Cinsiyet",
+    "BirthDate": "Doğum Tarihi",
+    "PhoneNumber": "Telefon Numarası",
+    "Male": "Erkek",
+    "Female": "Kadın",
+    "NotAssigned": "Belirtilmemiş"
   },
   "NotFound": {
     "NotFound": "Bu Sayfa Mevcut Değil",

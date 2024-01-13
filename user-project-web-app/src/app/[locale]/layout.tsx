@@ -31,7 +31,6 @@ export async function generateMetadata({
         index: true,
       },
     },
-    metadataBase: new URL(""),
     alternates: {
       canonical: "/",
       languages: {
@@ -97,3 +96,4 @@ export default function LocaleLayout({
     </html>
   );
 }
+/* metadataBase: new URL(""), */

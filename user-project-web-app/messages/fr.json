@@ -19,7 +19,14 @@
     "EditAUser": "Modifier Un Utilisateur",
     "DeleteAUser": "Supprimer Un Utilisateur",
     "CreateAUser": "Créer Un Utilisateur",
-    "Delete": "Supprimer"
+    "Delete": "Supprimer",
+    "Username": "Nom d'utilisateur",
+    "Gender": "Genre",
+    "BirthDate": "Date de naissance",
+    "PhoneNumber": "Numéro de téléphone",
+    "Male": "Homme",
+    "Female": "Femme",
+    "NotAssigned": "Non spécifié"
   },
   "NotFound": {
     "NotFound": "Cette page n'existe pas",
