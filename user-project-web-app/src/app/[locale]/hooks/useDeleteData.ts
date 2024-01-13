@@ -3,10 +3,12 @@ import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 
 const useDeleteData = () => {
+  // Use Toast for more user friendly experience
   const toast = useToast();
 
   const deleteUser = async (userId: number) => {
     try {
+      // Make API request to delete user
       const response = await axios.delete(
         `http://localhost:8000/users/${userId}`
       );
@@ -17,7 +19,9 @@ const useDeleteData = () => {
         duration: 2000,
         isClosable: true,
       });
-    } catch (error) {
+    } 
+    // Catch and display errors if any
+    catch (error) {
       toast({
         title: "An error occurred.",
         description: "Unable to delete user.",

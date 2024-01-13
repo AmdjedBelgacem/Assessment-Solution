@@ -2,6 +2,7 @@ import MasterView from "./master-view/page";
 import { useTranslations } from "next-intl";
 
 export default function Page() {
+  // Calling the useTranslations, to control language change within the page
   const t = useTranslations("MasterView");
   const translations = {
     title: t('title'),

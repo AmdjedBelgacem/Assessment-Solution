@@ -8,6 +8,8 @@ import CrudComponents from "../../components/CrudComponents";
 import { useLocale } from "next-intl";
 import Image from "next/image";
 
+// Just Getting props and handling them
+// This component is the MasterView where the user find all the crud operations
 export default function MasterView({
   translations,
 }: {
@@ -23,6 +25,7 @@ export default function MasterView({
     noUser: string;
   };
 }) {
+  // I Like to style this way in generale or if im using tailwind, it is cleaner in general
   const styles = {
     container: "flex flex-col justify-around w-full max-w-2xl h-min-screen",
     header: "text-4xl font-extrabold text-center pt-4 dark:text-white",
@@ -42,17 +45,25 @@ export default function MasterView({
     loading: "h-full w-full flex justify-center items-center",
   };
 
+  // To Handle the language change
   const locale = useLocale();
+  // Calling the useHook i made to fetch the users
   const { users, loading } = useFetchData("http://localhost:8000/users");
+  // Using the useRouter hook to redirect to the relevant page
   const router = useRouter();
+  // To filter the users based on what had been inputted in the search bar
   const [filterText, setFilterText] = useState("");
 
+  // Event handler function for handling changes in the filter input.
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // Updating the state variable (filterText) with the current value of the filter input.
     setFilterText(event.target.value);
   };
 
+  // Filtering the list of users based on the filterText.
   const filteredUsers = users
     ? users.filter((user: any) =>
+        // Using a case-insensitive regular expression to test if the filterText matches the username.
         new RegExp(filterText, "i").test(user.Username)
       )
     : [];

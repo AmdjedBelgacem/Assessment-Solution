@@ -1,6 +1,8 @@
 import Delete from "@/app/components/Delete";
 import { useTranslations } from "next-intl";
 
+// The idea from params is to extract the id from the url
+// This component is the DetailedView where the user find all the infos about a specific user and Delete it if needed.
 export default function Page({
   params,
 }: {
@@ -8,6 +10,7 @@ export default function Page({
     deleteId: number;
   };
 }) {
+  // Calling the useTranslations, to control language change within the page
   const m = useTranslations("MasterView");
   const mTranslations = {
     id: m("ID"),
@@ -29,5 +32,12 @@ export default function Page({
     DeleteAUser: d("DeleteAUser"),
     Back: d("Back"),
   };
-  return <Delete params={params} mTranslations={mTranslations} dTranslations={dTranslations} actionText={d("Delete")}/>;
+  return (
+    <Delete
+      params={params}
+      mTranslations={mTranslations}
+      dTranslations={dTranslations}
+      actionText={d("Delete")}
+    />
+  );
 }

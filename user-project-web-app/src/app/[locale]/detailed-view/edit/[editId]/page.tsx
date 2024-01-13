@@ -1,6 +1,8 @@
 import Edit from "@/app/components/Edit";
 import { useTranslations } from "next-intl";
 
+// The idea from params is to extract the id from the url
+// This component is the DetailedView where the user find all the infos about a specific user and Update necessary ones if needed.
 export default function Page({
   params,
 }: {
@@ -8,6 +10,7 @@ export default function Page({
     editId: number;
   };
 }) {
+  // Calling the useTranslations, to control language change within the page
   const m = useTranslations("MasterView");
   const mTranslations = {
     id: m("ID"),
@@ -29,5 +32,12 @@ export default function Page({
     EditAUser: d("EditAUser"),
     Back: d("Back"),
   };
-  return <Edit params={params} mTranslations={mTranslations} dTranslations={dTranslations} actionText={d("Save")}/>;
+  return (
+    <Edit
+      params={params}
+      mTranslations={mTranslations}
+      dTranslations={dTranslations}
+      actionText={d("Save")}
+    />
+  );
 }

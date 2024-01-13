@@ -1,5 +1,6 @@
 import React from "react";
 
+// Just Getting props and handling them
 export default function Infos({
   user,
   mTranslations,
@@ -34,6 +35,7 @@ export default function Infos({
     Back: string;
   };
 }) {
+  // I Like to style this way in generale or if im using tailwind, it is cleaner in general
   const styles = {
     innerContainer:
       "flex flex-col justify-between w-full bg-white/50 shadow-2xl dark:bg-black/50 backdrop-blur-lg h-full rounded-xl p-2 gap-y-2 h-68 text-gray-800 dark:text-gray-200",
@@ -68,7 +70,9 @@ export default function Infos({
           <p className={`${styles.p}`}>{user.BirthDate}</p>
         </li>
         <li className={`${styles.li} font-semibold`}>
-          <p className={`${styles.p} font-bold`}>{dTranslations.phoneNumber} </p>
+          <p className={`${styles.p} font-bold`}>
+            {dTranslations.phoneNumber}{" "}
+          </p>
           <p className={`${styles.p}`}>{user.PhoneNumber}</p>
         </li>
         <li className={`${styles.li}`}>

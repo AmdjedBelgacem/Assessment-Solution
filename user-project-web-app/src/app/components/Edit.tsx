@@ -6,6 +6,7 @@ import useFetchData from "@/app/[locale]/hooks/useFetchData";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
+// Interface to handle the types of data im using in the formData that im posting
 interface FormData {
   Username: string;
   FullName: string;
@@ -15,6 +16,7 @@ interface FormData {
   PhoneNumber: string;
 }
 
+// Just Getting props and handling them
 export default function Edit({
   params,
   mTranslations,
@@ -42,12 +44,16 @@ export default function Edit({
   };
   actionText: string;
 }) {
+  // Calling the useHooks i made
   const { updateUser } = useUpdateData();
-  const router = useRouter();
   const { users, loading } = useFetchData(
     "http://localhost:8000/users",
     params.editId
   );
+  // Using the useRouter hook to redirect to the relevant page
+  const router = useRouter();
+  
+  // State variable to track the form data
   const [formData, setFormData] = useState<FormData>({
     Username: "",
     FullName: "",
@@ -57,6 +63,7 @@ export default function Edit({
     PhoneNumber: "",
   });
 
+  // I Like to style this way in generale or if im using tailwind, it is cleaner in general
   const styles = {
     container:
       "flex flex-col justify-start h-min-screen max-w-2xl w-11/12 bg-white/50 shadow-2xl dark:bg-black/50 backdrop-blur-lg p-3 rounded-xl gap-y-4 text-gray-800 dark:text-gray-200",

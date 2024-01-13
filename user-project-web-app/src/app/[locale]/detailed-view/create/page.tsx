@@ -1,6 +1,7 @@
 import Create from "@/app/components/Create";
 import { useTranslations } from "next-intl";
 
+// This component is the DetailedView where to create a new user.
 export default function Page() {
   const m = useTranslations("MasterView");
   const mTranslations = {

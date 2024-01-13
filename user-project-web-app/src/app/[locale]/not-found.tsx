@@ -3,7 +3,15 @@ import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export default function NotFound({ notFound, redirect }: { notFound: string, redirect: string }) {
+// This component is to generally handle all the 404 pages not found
+export default function NotFound({
+  notFound,
+  redirect,
+}: {
+  notFound: string;
+  redirect: string;
+}) {
+  // Using the useRouter hook to redirect to the relevant page
   const router = useRouter();
   return (
     <div className="flex flex-col gap-y-4">

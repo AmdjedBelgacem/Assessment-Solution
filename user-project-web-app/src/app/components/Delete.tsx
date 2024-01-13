@@ -6,6 +6,7 @@ import useFetchData from "@/app/[locale]/hooks/useFetchData";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
+// Just Getting props and handling them
 export default function Delete({
   params,
   mTranslations,
@@ -21,6 +22,13 @@ export default function Delete({
     email: string;
   };
   dTranslations: {
+    username: string;
+    gender: string;
+    birthDate: string;
+    phoneNumber: string;
+    male: string;
+    female: string;
+    notAssigned: string;
     createdAt: string;
     lastUpdated: string;
     DeleteAUser: string;
@@ -28,6 +36,7 @@ export default function Delete({
   };
   actionText: string;
 }) {
+  // I Like to style this way in generale or if im using tailwind, it is cleaner in general
   const styles = {
     container:
       "flex flex-col justify-start h-min-screen max-w-2xl w-11/12 bg-white/50 shadow-2xl dark:bg-black/50 backdrop-blur-lg p-3 rounded-xl gap-y-4",
@@ -37,12 +46,14 @@ export default function Delete({
     loading: "h-full w-full flex justify-center items-center",
   };
 
+  // Calling the useHooks i made
   const { users, loading } = useFetchData(
     "http://localhost:8000/users",
     params.deleteId
   );
-
   const { deleteUser } = useDeleteData();
+  
+  // Using the useRouter hook to redirect to the relevant page
   const router = useRouter();
 
   return (

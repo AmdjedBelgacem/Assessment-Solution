@@ -8,6 +8,7 @@ import LanguageToggle from "../components/LanguageToggle";
 
 const inter = Inter({ subsets: ["latin"] });
 
+// This is to handle all of the page's metadata
 export async function generateMetadata({
   params: { locale },
 }: {

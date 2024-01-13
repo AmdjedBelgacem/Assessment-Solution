@@ -3,10 +3,12 @@ import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 
 const useCreateData = () => {
+  // Use Toast for more user friendly experience
   const toast = useToast();
 
   const createUser = async (data: any) => {
     try {
+      // Make API request to create user
       const response = await axios.post(
         "http://localhost:8000/users",
         data
@@ -18,7 +20,9 @@ const useCreateData = () => {
         duration: 2000,
         isClosable: true,
       });
-    } catch (error) {
+    }
+    // Catch and display errors if any 
+    catch (error) {
       toast({
         title: "An error occurred.",
         description: "Unable to Create user.",

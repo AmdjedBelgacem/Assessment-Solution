@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 
+// Just Getting props and handling them
 export default function CrudComponents({
   user,
   translations,
@@ -21,6 +22,7 @@ export default function CrudComponents({
     delete: string;
   };
 }) {
+  // I Like to style this way in generale or if im using tailwind, it is cleaner in general
   const styles = {
     li: "w-full flex justify-between",
     dataContainer:
@@ -30,7 +32,9 @@ export default function CrudComponents({
     button: "w-1/2 h-full rounded-lg transition duration-300 ease-in-out",
   };
 
+  // This is to handle language prefix 
   const locale = useLocale();
+  // Using the useRouter hook to redirect to the relevant page
   const router = useRouter();
 
   return (

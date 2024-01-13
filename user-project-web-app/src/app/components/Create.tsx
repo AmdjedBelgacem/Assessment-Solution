@@ -3,6 +3,7 @@ import React, { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import useCreateData from "@/app/[locale]/hooks/useCreateData";
 
+// Interface to handle the types of data im using in the formData that im posting
 interface FormData {
   Username: string;
   FullName: string;
@@ -11,6 +12,7 @@ interface FormData {
   BirthDate: string;
   PhoneNumber: string;
 }
+// Just Getting props and handling them
 export default function Create({
   mTranslations,
   dTranslations,
@@ -34,6 +36,7 @@ export default function Create({
   };
   actionText: string;
 }) {
+  // I Like to style this way in generale or if im using tailwind, it is cleaner in general
   const styles = {
     container:
       "flex flex-col justify-start h-min-screen max-w-2xl w-11/12 bg-white/50 shadow-2xl dark:bg-black/50 backdrop-blur-lg p-3 rounded-xl gap-y-4 dark:text-white",
@@ -48,8 +51,9 @@ export default function Create({
     genderContainer: "flex w-full justify-around font-medium",
     genderInnerContainer: "flex gap-x-2 items-center",
   };
+  // Using the useRouter hook to redirect to the relevant page
   const router = useRouter();
-
+  // State variable to track the form data
   const [formData, setFormData] = useState<FormData>({
     Username: "",
     FullName: "",
@@ -59,8 +63,10 @@ export default function Create({
     PhoneNumber: "",
   });
 
+  // Calling the useHook i made
   const { createUser } = useCreateData();
 
+  // Handling form Submitting to database
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     createUser(formData);
