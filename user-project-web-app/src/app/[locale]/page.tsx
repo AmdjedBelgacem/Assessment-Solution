@@ -8,12 +8,11 @@ export default function Page() {
     id: t('ID'),
     fullName: t('FullName'),
     email: t('Email'),
-    createdAt: t('CreatedAt'),
-    updatedAt: t('UpdatedAt'),
     operations: t('Operations'),
     new: t('New'),
     edit: t('Edit'),
     delete: t('Delete'),
+    noUser: t('NoUser')
   }
   return <MasterView translations={translations}/>;
 }

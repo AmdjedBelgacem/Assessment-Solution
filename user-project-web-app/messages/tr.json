@@ -4,11 +4,25 @@
     "ID": "ID",
     "FullName": "Tam Adı",
     "Email": "E-posta",
-    "CreatedAt": "Oluşturulma Tarihi",
-    "UpdatedAt": "Güncelleme Tarihi ",
     "Operations": "İşlemler",
     "New": "Yn",
     "Edit": "Dzn",
+    "Delete": "Sil",
+    "NoUser": "Bu İsimde Kullanıcı Bulunamadı"
+  },
+  "DetailedView": {
+    "CreatedAt": "Oluşturulma Tarihi",
+    "LastUpdated": "Son Güncelleme Tarihi",
+    "Save": "Kaydet",
+    "Back": "Geri",
+    "Create": "Oluştur",
+    "EditAUser": "Kullanıcı Düzenle",
+    "DeleteAUser": "Kullanıcı Sil",
+    "CreateAUser": "Kullanıcı Oluştur",
     "Delete": "Sil"
+  },
+  "NotFound": {
+    "NotFound": "Bu Sayfa Mevcut Değil",
+    "Redirect": "Ana Sayfaya Dönmek İçin Tıklayın"
   }
 }

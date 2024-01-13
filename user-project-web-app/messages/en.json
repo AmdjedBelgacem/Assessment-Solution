@@ -4,11 +4,26 @@
     "ID": "ID",
     "FullName": "Full name",
     "Email": "Email",
-    "CreatedAt": "Created At",
-    "UpdatedAt": "Updated At",
     "Operations": "Operations",
     "New": "New",
     "Edit": "Edit",
+    "Delete": "Delete",
+    "NoUser": "No Users With Such Name"
+  },
+  "DetailedView": {
+    "ID": "ID",
+    "CreatedAt": "Created At",
+    "LastUpdated": "LastUpdated",
+    "Save": "Save",
+    "Back": "Back",
+    "Create": "Create",
+    "EditAUser": "Edit A User",
+    "DeleteAUser": "Delete A User",
+    "CreateAUser": "Create A User",
     "Delete": "Delete"
+  },
+  "NotFound": {
+    "NotFound": "The Page You are looking for Does not exist",
+    "Redirect": "Click Here To be Redirected Home"
   }
 }

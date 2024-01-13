@@ -16,13 +16,6 @@ export default function CrudComponents({
     Email: string;
   };
   translations: {
-    title: string;
-    id: string;
-    fullName: string;
-    email: string;
-    createdAt: string;
-    updatedAt: string;
-    operations: string;
     new: string;
     edit: string;
     delete: string;

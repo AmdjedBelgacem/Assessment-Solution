@@ -1,10 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 
 const useCreateData = () => {
-  const [loading, setLoading] = useState<boolean>(false);
-  const [actionText, setActionText] = useState<string>("Create");
   const toast = useToast();
 
   const createUser = async (data: any) => {
@@ -29,12 +27,10 @@ const useCreateData = () => {
         isClosable: true,
       });
       console.error("Error:", error);
-    } finally {
-        setLoading(false)
-    }
+    } 
   };
   
-  return {createUser, actionText, loading}
+  return {createUser}
 };
 
 export default useCreateData

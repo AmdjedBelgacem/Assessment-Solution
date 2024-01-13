@@ -2,6 +2,8 @@ import React from "react";
 
 export default function Infos({
   user,
+  mTranslations,
+  dTranslations,
 }: {
   user: {
     ID: number;
@@ -9,6 +11,16 @@ export default function Infos({
     Email: string;
     CreatedAt?: string;
     UpdatedAt?: string;
+  };
+  mTranslations: {
+    id: string;
+    fullName: string;
+    email: string;
+  };
+  dTranslations: {
+    createdAt: string;
+    lastUpdated: string;
+    Back: string;
   };
 }) {
   const styles = {
@@ -21,25 +33,25 @@ export default function Infos({
     <div>
       <ul className={`${styles.innerContainer}`}>
         <li className={`${styles.li} font-semibold`}>
-          <p className={`${styles.p} font-bold`}>ID </p>
+          <p className={`${styles.p} font-bold`}>{mTranslations.id} </p>
           <p className={`${styles.p}`}>{user.ID}</p>
         </li>
         <li className={`${styles.li} font-semibold`}>
-          <p className={`${styles.p} font-bold`}>Username </p>
+          <p className={`${styles.p} font-bold`}>{mTranslations.fullName} </p>
           <p className={`${styles.p}`}>{user.Username}</p>
         </li>
         <li className={`${styles.li} font-semibold`}>
-          <p className={`${styles.p} font-bold`}>Email </p>
+          <p className={`${styles.p} font-bold`}>{mTranslations.email} </p>
           <p className={`${styles.p}`}>{user.Email}</p>
         </li>
         <li className={`${styles.li}`}>
-          <p className={`${styles.p} font-bold`}>Created At </p>
+          <p className={`${styles.p} font-bold`}>{dTranslations.createdAt}</p>
           <p className={`${styles.p} font-semibold`}>
             {user.CreatedAt?.slice(0, 10)} {user.CreatedAt?.slice(11, 18)}
           </p>
         </li>
         <li className={`${styles.li}`}>
-          <p className={`${styles.p} font-bold`}>Last Updated </p>
+          <p className={`${styles.p} font-bold`}>{dTranslations.lastUpdated}</p>
           <p className={`${styles.p} font-semibold`}>
             {user.UpdatedAt?.slice(0, 10)} {user.UpdatedAt?.slice(11, 18)}
           </p>

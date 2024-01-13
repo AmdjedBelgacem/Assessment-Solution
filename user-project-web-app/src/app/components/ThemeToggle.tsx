@@ -22,7 +22,7 @@ const ThemeToggle = () => {
 
   return (
     <div className="p-3">
-      <button onClick={()=>setDarkMode(!darkMode)}>{darkMode ? <Icons.moon width="30" height="30"/> : <Icons.Sun width="30" height="30"/>}</button>
+      <button onClick={()=>setDarkMode(!darkMode)} className={`transform duration-300 ease-in ${darkMode ? "dark-mode rotate-[360deg]" : "light-mode rotate-0"}`}>{darkMode ? <Icons.moon width="30" height="30"/> : <Icons.Sun width="30" height="30"/>}</button>
     </div>
   );
 };

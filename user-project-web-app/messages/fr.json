@@ -4,11 +4,25 @@
     "ID": "ID",
     "FullName": "Nom complet",
     "Email": "Courriel ",
-    "CreatedAt": "Date de création",
-    "UpdatedAt": "Date de mise à jour",
     "Operations": "Opérations",
     "New": "Nv",
     "Edit": "Modif",
-    "Delete": "Supp"
+    "Delete": "Supp",
+    "NoUser": "Aucun utilisateur avec ce nom"
+  },
+  "DetailedView": {
+    "CreatedAt": "Date De Création",
+    "LastUpdated": "Dernière mise à jour",
+    "Save": "Enregistrer",
+    "Back": "Retour",
+    "Create": "Créer",
+    "EditAUser": "Modifier Un Utilisateur",
+    "DeleteAUser": "Supprimer Un Utilisateur",
+    "CreateAUser": "Créer Un Utilisateur",
+    "Delete": "Supprimer"
+  },
+  "NotFound": {
+    "NotFound": "Cette page n'existe pas",
+    "Redirect": "Retour à la page d'accueil"
   }
 }

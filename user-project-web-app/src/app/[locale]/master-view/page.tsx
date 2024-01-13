@@ -6,21 +6,21 @@ import useFetchData from "../hooks/useFetchData";
 import { useRouter } from "next/navigation";
 import CrudComponents from "../../components/CrudComponents";
 import { useLocale } from "next-intl";
+import Image from "next/image";
 
 export default function MasterView({
   translations,
 }: {
   translations: {
-    title: string,
-    id: string,
-    fullName: string,
-    email: string,
-    createdAt: string,
-    updatedAt: string,
-    operations: string,
-    new: string,
-    edit: string,
-    delete: string,
+    title: string;
+    id: string;
+    fullName: string;
+    email: string;
+    operations: string;
+    new: string;
+    edit: string;
+    delete: string;
+    noUser: string;
   };
 }) {
   const styles = {
@@ -37,10 +37,13 @@ export default function MasterView({
     containerHeader: "flex gap-x-1",
     button:
       "w-1/12 bg-blue-400 rounded-lg text-center hover:bg-blue-500 transition duration-300 ease-in-out font-semibold text-white",
+    noData:
+      "flex flex-col justify-center items-center bg-white/80 dark:bg-gray-800/80 shadow-xl rounded-xl text-center font-semibold text-gray-800 dark:text-gray-200 p-2 h-28",
+    loading: "h-full w-full flex justify-center items-center",
   };
 
   const locale = useLocale();
-  const { users } = useFetchData("http://localhost:8000/users");
+  const { users, loading } = useFetchData("http://localhost:8000/users");
   const router = useRouter();
   const [filterText, setFilterText] = useState("");
 
@@ -56,48 +59,66 @@ export default function MasterView({
 
   return (
     <div className={`${styles.container}`}>
-      <div className={`${styles.subContainer}`}>
-        <h1 className={`${styles.header}`}>{translations.title}</h1>
-        <div className={`${styles.containerHeader}`}>
-          <input
-            type="text"
-            value={filterText}
-            onChange={handleFilterChange}
-            placeholder="Filter by username"
-            className={`${styles.filter}`}
-          />
-          <button
-            onClick={() => router.push(`${locale}/detailed-view/create`)}
-            className={styles.button}
-          >
-            <span className="hidden md:block ">{translations.new}</span>
-            <FontAwesomeIcon icon={faPlus} className="md:hidden" />
-          </button>
+      {loading ? (
+        <div className={styles.loading}>
+          <Image src="/rocket.gif" alt="rocket" width={300} height={300} />
         </div>
-        <ul className={`${styles.headersContainer}`}>
-          <li className={`${styles.headers} w-[10%] text-center`}>
-            {translations.id}
-          </li>
-          <li className={`${styles.headers} w-[40%] pl-2 text-start`}>
-            {translations.fullName}
-          </li>
-          <li className={`${styles.headers} w-[50%] pl-2 text-start`}>
-            {translations.email}
-          </li>
-          <li className={`${styles.headers} w-1/4`}>
-            {translations.operations}
-          </li>
-        </ul>
-        <ul className={`${styles.ul}`}>
-          {filteredUsers.map((user: any) => (
-            <CrudComponents
-              key={user.ID}
-              user={user}
-              translations={translations}
+      ) : (
+        <div className={`${styles.subContainer}`}>
+          <h1 className={`${styles.header}`}>{translations.title}</h1>
+          <div className={`${styles.containerHeader}`}>
+            <input
+              type="text"
+              value={filterText}
+              onChange={handleFilterChange}
+              placeholder="Filter by username"
+              className={`${styles.filter}`}
             />
-          ))}
-        </ul>
-      </div>
+            <button
+              onClick={() => router.push(`${locale}/detailed-view/create`)}
+              className={styles.button}
+            >
+              <span className="hidden md:block ">{translations.new}</span>
+              <FontAwesomeIcon icon={faPlus} className="md:hidden" />
+            </button>
+          </div>
+          <ul className={`${styles.headersContainer}`}>
+            <li className={`${styles.headers} w-[10%] text-center`}>
+              {translations.id}
+            </li>
+            <li className={`${styles.headers} w-[40%] pl-2 text-start`}>
+              {translations.fullName}
+            </li>
+            <li className={`${styles.headers} w-[50%] pl-2 text-start`}>
+              {translations.email}
+            </li>
+            <li className={`${styles.headers} w-1/4`}>
+              {translations.operations}
+            </li>
+          </ul>
+          {filteredUsers.length > 0 ? (
+            <ul className={`${styles.ul}`}>
+              {filteredUsers.map((user: any) => (
+                <CrudComponents
+                  key={user.ID}
+                  user={user}
+                  translations={translations}
+                />
+              ))}
+            </ul>
+          ) : (
+            <div className={styles.noData}>
+              <Image
+                src="/AnimatedSkating.gif"
+                height={100}
+                width={100}
+                alt="Skating Friend"
+              />
+              <p className="w-full text-xl font-bold">{translations.noUser}</p>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
