@@ -13,7 +13,7 @@ export default function CrudComponents({
 }: {
   user: {
     ID: number;
-    Username: string;
+    FullName: string;
     Email: string;
   };
   translations: {
@@ -41,7 +41,7 @@ export default function CrudComponents({
     <li className={`${styles.li}`}>
       <div className={`${styles.dataContainer}`}>
         <p className={`${styles.data} w-[10%] text-center`}>{user.ID}</p>
-        <p className={`${styles.data} w-[40%] pl-2`}>{user.Username}</p>
+        <p className={`${styles.data} w-[40%] pl-2`}>{user.FullName}</p>
         <p className={`${styles.data} w-[50%] pl-2`}>{user.Email}</p>
       </div>
       <div className={`${styles.buttonContainer}`}>

@@ -8,7 +8,6 @@ import Image from "next/image";
 
 // Interface to handle the types of data im using in the formData that im posting
 interface FormData {
-  Username: string;
   FullName: string;
   Email: string;
   Gender: string;
@@ -52,10 +51,9 @@ export default function Edit({
   );
   // Using the useRouter hook to redirect to the relevant page
   const router = useRouter();
-  
+  console.log(users)
   // State variable to track the form data
   const [formData, setFormData] = useState<FormData>({
-    Username: "",
     FullName: "",
     Email: "",
     Gender: "",
@@ -114,7 +112,7 @@ export default function Edit({
                 id="FullName"
                 value={formData.FullName}
                 onChange={(e) =>
-                  setFormData({ ...formData, FullName: e.target.value })
+                  setFormData({ ...formData, FullName: e.target.value ? e.target.value : users.FullName })
                 }
                 placeholder="John Doe"
                 className={`${styles.input}`}
@@ -131,7 +129,7 @@ export default function Edit({
                 id="email"
                 className={`${styles.input}`}
                 onChange={(e) =>
-                  setFormData({ ...formData, Email: e.target.value })
+                  setFormData({ ...formData, Email: e.target.value ? e.target.value : users.Email })
                 }
                 placeholder="example@gmail.com"
                 required
@@ -149,7 +147,7 @@ export default function Edit({
                     name="gender"
                     value="male"
                     onChange={(e) =>
-                      setFormData({ ...formData, Gender: e.target.value })
+                      setFormData({ ...formData, Gender: e.target.value ? e.target.value : users.Gender})
                     }
                   />
                   <label htmlFor="male">{dTranslations.male}</label>
@@ -161,7 +159,7 @@ export default function Edit({
                     name="gender"
                     value="female"
                     onChange={(e) =>
-                      setFormData({ ...formData, Gender: e.target.value })
+                      setFormData({ ...formData, Gender: e.target.value ? e.target.value : users.Gender})
                     }
                   />
                   <label htmlFor="female">{dTranslations.female}</label>
@@ -173,7 +171,7 @@ export default function Edit({
                     name="gender"
                     value="notAssigned"
                     onChange={(e) =>
-                      setFormData({ ...formData, Gender: e.target.value })
+                      setFormData({ ...formData, Gender: e.target.value ? e.target.value : users.Gender })
                     }
                   />
                   <label htmlFor="notAssigned">
@@ -192,7 +190,7 @@ export default function Edit({
                 id="BirthDate"
                 value={formData.BirthDate}
                 onChange={(e) =>
-                  setFormData({ ...formData, BirthDate: e.target.value })
+                  setFormData({ ...formData, BirthDate: e.target.value ? e.target.value : users.BirthDate })
                 }
                 className={`${styles.input}`}
                 required
@@ -208,7 +206,7 @@ export default function Edit({
                 id="PhoneNumber"
                 value={formData.PhoneNumber}
                 onChange={(e) =>
-                  setFormData({ ...formData, PhoneNumber: e.target.value })
+                  setFormData({ ...formData, PhoneNumber: e.target.value ? e.target.value : users.PhoneNumber})
                 }
                 className={`${styles.input}`}
                 placeholder="+90 123 456 7890"
