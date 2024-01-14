@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Infos from "@/app/components/Infos";
+import Infos from "./Infos";
 import useDeleteData from "@/app/[locale]/hooks/useDeleteData";
 import useFetchData from "@/app/[locale]/hooks/useFetchData";
 import { useRouter } from "next/navigation";

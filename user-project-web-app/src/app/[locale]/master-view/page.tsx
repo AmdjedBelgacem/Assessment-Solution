@@ -8,23 +8,29 @@ import CrudComponents from "../../components/CrudComponents";
 import { useLocale } from "next-intl";
 import Image from "next/image";
 
+
+interface MasterViewProps {
+  params: {
+    translations: {
+      title: string;
+      id: string;
+      fullName: string;
+      email: string;
+      operations: string;
+      new: string;
+      edit: string;
+      delete: string;
+      noUser: string;
+    };
+  };
+}
+
+
 // Just Getting props and handling them
 // This component is the MasterView where the user find all the crud operations
 export default function MasterView({
-  translations,
-}: {
-  translations: {
-    title: string;
-    id: string;
-    fullName: string;
-    email: string;
-    operations: string;
-    new: string;
-    edit: string;
-    delete: string;
-    noUser: string;
-  };
-}) {
+  params
+}: MasterViewProps) {
   // I Like to style this way in generale or if im using tailwind, it is cleaner in general
   const styles = {
     container: "flex flex-col justify-around w-full max-w-2xl h-min-screen",
@@ -76,7 +82,7 @@ export default function MasterView({
         </div>
       ) : (
         <div className={`${styles.subContainer}`}>
-          <h1 className={`${styles.header}`}>{translations.title}</h1>
+          <h1 className={`${styles.header}`}>{params.translations.title}</h1>
           <div className={`${styles.containerHeader}`}>
             <input
               type="text"
@@ -89,22 +95,22 @@ export default function MasterView({
               onClick={() => router.push(`${locale}/detailed-view/create`)}
               className={styles.button}
             >
-              <span className="hidden md:block ">{translations.new}</span>
+              <span className="hidden md:block ">{params.translations.new}</span>
               <FontAwesomeIcon icon={faPlus} className="md:hidden" />
             </button>
           </div>
           <ul className={`${styles.headersContainer}`}>
             <li className={`${styles.headers} w-[10%] text-center`}>
-              {translations.id}
+              {params.translations.id}
             </li>
             <li className={`${styles.headers} w-[40%] pl-2 text-start`}>
-              {translations.fullName}
+              {params.translations.fullName}
             </li>
             <li className={`${styles.headers} w-[50%] pl-2 text-start`}>
-              {translations.email}
+              {params.translations.email}
             </li>
             <li className={`${styles.headers} w-1/4`}>
-              {translations.operations}
+              {params.translations.operations}
             </li>
           </ul>
           {filteredUsers.length > 0 ? (
@@ -113,7 +119,7 @@ export default function MasterView({
                 <CrudComponents
                   key={user.ID}
                   user={user}
-                  translations={translations}
+                  translations={params.translations}
                 />
               ))}
             </ul>
@@ -125,7 +131,7 @@ export default function MasterView({
                 width={100}
                 alt="Skating Friend"
               />
-              <p className="w-full text-xl font-bold">{translations.noUser}</p>
+              <p className="w-full text-xl font-bold">{params.translations.noUser}</p>
             </div>
           )}
         </div>

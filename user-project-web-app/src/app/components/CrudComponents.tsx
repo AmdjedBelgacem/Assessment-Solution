@@ -6,22 +6,23 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 
-// Just Getting props and handling them
-export default function CrudComponents({
-  user,
-  translations,
-}: {
+interface CrudComponentsProps {
   user: {
     ID: number;
     FullName: string;
     Email: string;
-  };
+  },
   translations: {
     new: string;
     edit: string;
     delete: string;
   };
-}) {
+}
+// Just Getting props and handling them
+export default function CrudComponents({
+  translations,
+  user
+}: CrudComponentsProps) {
   // I Like to style this way in generale or if im using tailwind, it is cleaner in general
   const styles = {
     li: "w-full flex justify-between",
@@ -32,7 +33,7 @@ export default function CrudComponents({
     button: "w-1/2 h-full rounded-lg transition duration-300 ease-in-out",
   };
 
-  // This is to handle language prefix 
+  // This is to handle language prefix
   const locale = useLocale();
   // Using the useRouter hook to redirect to the relevant page
   const router = useRouter();
@@ -53,7 +54,9 @@ export default function CrudComponents({
           <FontAwesomeIcon icon={faPenToSquare} className="md:hidden" />
         </button>
         <button
-          onClick={() => router.push(`${locale}/detailed-view/delete/${user.ID}`)}
+          onClick={() =>
+            router.push(`${locale}/detailed-view/delete/${user.ID}`)
+          }
           className={`${styles.button} bg-red-500 hover:bg-red-600 text-white`}
         >
           <Link href="/DetailView">

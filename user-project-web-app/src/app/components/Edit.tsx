@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Infos from "@/app/components/Infos";
+import Infos from "./Infos";
 import useUpdateData from "@/app/[locale]/hooks/useEditData";
 import useFetchData from "@/app/[locale]/hooks/useFetchData";
 import { useRouter } from "next/navigation";

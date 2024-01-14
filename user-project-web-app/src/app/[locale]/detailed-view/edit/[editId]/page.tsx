@@ -1,4 +1,4 @@
-import Edit from "@/app/components/Edit";
+import Edit from "../../../../components/Edit";
 import { useTranslations } from "next-intl";
 
 // The idea from params is to extract the id from the url

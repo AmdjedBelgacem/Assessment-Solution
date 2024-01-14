@@ -1,4 +1,4 @@
-import Delete from "@/app/components/Delete";
+import Delete from "../../../../components/Delete";
 import { useTranslations } from "next-intl";
 
 // The idea from params is to extract the id from the url

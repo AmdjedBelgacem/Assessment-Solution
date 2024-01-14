@@ -5,6 +5,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { Waves } from "../components/svg-components/Waves";
 import ThemeToggle from "../components/ThemeToggle";
 import LanguageToggle from "../components/LanguageToggle";
+import { unstable_setRequestLocale } from "next-intl/server";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,8 @@ export async function generateMetadata({
       template: "%s | User Management app",
       default: "User Management app",
     },
-    description: "This is a user management app with Crud operations to manage users.",
+    description:
+      "This is a user management app with Crud operations to manage users.",
     verification: {
       google: "",
     },
