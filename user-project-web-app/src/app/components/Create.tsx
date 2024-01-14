@@ -2,6 +2,7 @@
 import React, { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import useCreateData from "@/app/[locale]/hooks/useCreateData";
+import { Button } from "@chakra-ui/react";
 
 // Interface to handle the types of data im using in the formData that im posting
 interface FormData {
@@ -65,6 +66,9 @@ export default function Create({
 
   // Calling the useHook i made
   const { createUser } = useCreateData();
+
+  // Button Loading for better user experience
+  const [backLoading, setBackLoading] = useState<boolean>(false);
 
   // Handling form Submitting to database
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -218,19 +222,31 @@ export default function Create({
           </button>
         </form>
       </div>
-
-      <button
-        onClick={() => router.push("/")}
-        className="bg-orange-500/80 rounded-xl h-10 font-semibold hover:bg-orange-600 transition duration-300 ease-in-out text-white backdrop-blur-lg"
-      >
-        {dTranslations.Back}
-      </button>
+      {backLoading ? (
+        <Button
+          isLoading
+          variant="outline"
+          spinnerPlacement="start"
+          loadingText="Redirecting"
+          disabled
+          colorScheme="orange"
+          borderRadius={`10px`}
+          onClick={() => router.push("/")}
+        >
+          {dTranslations.Back}
+        </Button>
+      ) : (
+        <Button
+          colorScheme="orange"
+          borderRadius={`10px`}
+          onClick={() => {
+            setBackLoading(true);
+            router.push("/");
+          }}
+        >
+          {dTranslations.Back}
+        </Button>
+      )}
     </div>
   );
 }
-
-/*
-<div className="h-full w-full flex justify-center items-center">
-          <Image src="/rocket.gif" alt="rocket" width={400} height={400} />
-        </div>
-        */

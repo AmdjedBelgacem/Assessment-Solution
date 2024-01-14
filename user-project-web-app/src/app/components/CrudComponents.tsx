@@ -1,8 +1,7 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrashCan } from "@fortawesome/free-regular-svg-icons";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 
@@ -11,7 +10,7 @@ interface CrudComponentsProps {
     ID: number;
     FullName: string;
     Email: string;
-  },
+  };
   translations: {
     new: string;
     edit: string;
@@ -21,7 +20,7 @@ interface CrudComponentsProps {
 // Just Getting props and handling them
 export default function CrudComponents({
   translations,
-  user
+  user,
 }: CrudComponentsProps) {
   // I Like to style this way in generale or if im using tailwind, it is cleaner in general
   const styles = {
@@ -37,6 +36,9 @@ export default function CrudComponents({
   const locale = useLocale();
   // Using the useRouter hook to redirect to the relevant page
   const router = useRouter();
+  // Button Loading for better user experience
+  const [editLoading, setEditLoading] = useState<boolean>(false);
+  const [deleteLoading, setDeleteLoading] = useState<boolean>(false);
 
   return (
     <li className={`${styles.li}`}>
@@ -47,22 +49,26 @@ export default function CrudComponents({
       </div>
       <div className={`${styles.buttonContainer}`}>
         <button
-          onClick={() => router.push(`${locale}/detailed-view/edit/${user.ID}`)}
+          disabled={editLoading}
+          onClick={() => {
+            setEditLoading(true);
+            router.push(`${locale}/detailed-view/edit/${user.ID}`);
+          }}
           className={`${styles.button} bg-yellow-500 hover:bg-yellow-600 text-white`}
         >
           <span className="hidden md:block">{translations.edit}</span>
           <FontAwesomeIcon icon={faPenToSquare} className="md:hidden" />
         </button>
         <button
-          onClick={() =>
-            router.push(`${locale}/detailed-view/delete/${user.ID}`)
-          }
+          disabled={deleteLoading}
+          onClick={() => {
+            setDeleteLoading(true);
+            router.push(`${locale}/detailed-view/delete/${user.ID}`);
+          }}
           className={`${styles.button} bg-red-500 hover:bg-red-600 text-white`}
         >
-          <Link href="/DetailView">
-            <span className="hidden md:block">{translations.delete}</span>
-            <FontAwesomeIcon icon={faTrashCan} className="md:hidden" />
-          </Link>
+          <span className="hidden md:block">{translations.delete}</span>
+          <FontAwesomeIcon icon={faTrashCan} className="md:hidden" />
         </button>
       </div>
     </li>

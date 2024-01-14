@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import CrudComponents from "../../components/CrudComponents";
 import { useLocale } from "next-intl";
 import Image from "next/image";
-
+import { Button } from "@chakra-ui/react";
 
 interface MasterViewProps {
   params: {
@@ -25,12 +25,9 @@ interface MasterViewProps {
   };
 }
 
-
 // Just Getting props and handling them
 // This component is the MasterView where the user find all the crud operations
-export default function MasterView({
-  params
-}: MasterViewProps) {
+export default function MasterView({ params }: MasterViewProps) {
   // I Like to style this way in generale or if im using tailwind, it is cleaner in general
   const styles = {
     container: "flex flex-col justify-around w-full max-w-2xl h-min-screen",
@@ -44,8 +41,7 @@ export default function MasterView({
     headers:
       "bg-black dark:bg-white dark:text-gray-800 text-gray-200 rounded-xl text-center font-semibold max-[450px]:text-[8px] max-[700px]:text-[12px] py-1",
     containerHeader: "flex gap-x-1",
-    button:
-      "w-1/12 bg-blue-400 rounded-lg text-center hover:bg-blue-500 transition duration-300 ease-in-out font-semibold text-white",
+    button: "w-1/12 text-center font-semibold text-white",
     noData:
       "flex flex-col justify-center items-center bg-white/80 dark:bg-gray-800/80 shadow-xl rounded-xl text-center font-semibold text-gray-800 dark:text-gray-200 p-2 h-28",
     loading: "h-full w-full flex justify-center items-center",
@@ -59,6 +55,8 @@ export default function MasterView({
   const router = useRouter();
   // To filter the users based on what had been inputted in the search bar
   const [filterText, setFilterText] = useState("");
+  // To Handle Button Loading for better user experience
+  const [buttonLoading, setButtonLoading] = useState<boolean>(false);
 
   // Event handler function for handling changes in the filter input.
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -91,13 +89,38 @@ export default function MasterView({
               placeholder="Filter by username"
               className={`${styles.filter}`}
             />
-            <button
-              onClick={() => router.push(`${locale}/detailed-view/create`)}
-              className={styles.button}
-            >
-              <span className="hidden md:block ">{params.translations.new}</span>
-              <FontAwesomeIcon icon={faPlus} className="md:hidden" />
-            </button>
+            {buttonLoading ? (
+              <Button
+                isLoading
+                variant="outline"
+                spinnerPlacement="start"
+                colorScheme="twitter"
+                disabled
+                onClick={() => router.push(`${locale}/detailed-view/create`)}
+                className={styles.button}
+                borderRadius={`8px`}
+              >
+                <span className="hidden md:block ">
+                  {params.translations.new}
+                </span>
+                <FontAwesomeIcon icon={faPlus} className="md:hidden" />
+              </Button>
+            ) : (
+              <Button
+                colorScheme="twitter"
+                onClick={() => {
+                  setButtonLoading(true);
+                  router.push(`${locale}/detailed-view/create`);
+                }}
+                className={styles.button}
+                borderRadius={`8px`}
+              >
+                <span className="hidden md:block ">
+                  {params.translations.new}
+                </span>
+                <FontAwesomeIcon icon={faPlus} className="md:hidden" />
+              </Button>
+            )}
           </div>
           <ul className={`${styles.headersContainer}`}>
             <li className={`${styles.headers} w-[10%] text-center`}>
@@ -131,7 +154,9 @@ export default function MasterView({
                 width={100}
                 alt="Skating Friend"
               />
-              <p className="w-full text-xl font-bold">{params.translations.noUser}</p>
+              <p className="w-full text-xl font-bold">
+                {params.translations.noUser}
+              </p>
             </div>
           )}
         </div>

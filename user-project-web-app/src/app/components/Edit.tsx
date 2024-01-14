@@ -5,6 +5,7 @@ import useUpdateData from "@/app/[locale]/hooks/useEditData";
 import useFetchData from "@/app/[locale]/hooks/useFetchData";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { Button } from "@chakra-ui/react";
 
 // Interface to handle the types of data im using in the formData that im posting
 interface FormData {
@@ -51,7 +52,7 @@ export default function Edit({
   );
   // Using the useRouter hook to redirect to the relevant page
   const router = useRouter();
-  console.log(users)
+  console.log(users);
   // State variable to track the form data
   const [formData, setFormData] = useState<FormData>({
     FullName: "",
@@ -60,6 +61,10 @@ export default function Edit({
     BirthDate: "",
     PhoneNumber: "",
   });
+
+  // Button Loading for better user experience
+  const [backLoading, setBackLoading] = useState<boolean>(false);
+  const [saveLoading, setSaveLoading] = useState<boolean>(false);
 
   // I Like to style this way in generale or if im using tailwind, it is cleaner in general
   const styles = {
@@ -71,8 +76,6 @@ export default function Edit({
       "w-full flex bg-white/80 shadow-2xl dark:bg-gray-600/80 backdrop-blur-lg p-2 rounded-xl items-center",
     label: "w-2/5 min-[485px]:w-1/5 font-bold",
     input: "w-3/5 min-[485px]:w-4/5 pl-2 rounded-md py-1",
-    button:
-      "bg-green-500/90 p-2 rounded-xl font-semibold hover:bg-green-600 transition duration-300 ease-in-out text-white backdrop-blur-lg",
     loading: "h-full w-full flex justify-center items-center",
     genderContainer: "flex w-full justify-around font-medium",
     genderInnerContainer: "flex gap-x-2 items-center",
@@ -96,6 +99,7 @@ export default function Edit({
             onSubmit={(e) => {
               e.preventDefault();
               updateUser(params.editId, formData);
+              setSaveLoading(true);
               setTimeout(() => {
                 router.push("/");
               }, 1000);
@@ -112,7 +116,10 @@ export default function Edit({
                 id="FullName"
                 value={formData.FullName}
                 onChange={(e) =>
-                  setFormData({ ...formData, FullName: e.target.value ? e.target.value : users.FullName })
+                  setFormData({
+                    ...formData,
+                    FullName: e.target.value ? e.target.value : users.FullName,
+                  })
                 }
                 placeholder="John Doe"
                 className={`${styles.input}`}
@@ -129,7 +136,10 @@ export default function Edit({
                 id="email"
                 className={`${styles.input}`}
                 onChange={(e) =>
-                  setFormData({ ...formData, Email: e.target.value ? e.target.value : users.Email })
+                  setFormData({
+                    ...formData,
+                    Email: e.target.value ? e.target.value : users.Email,
+                  })
                 }
                 placeholder="example@gmail.com"
                 required
@@ -147,7 +157,10 @@ export default function Edit({
                     name="gender"
                     value="male"
                     onChange={(e) =>
-                      setFormData({ ...formData, Gender: e.target.value ? e.target.value : users.Gender})
+                      setFormData({
+                        ...formData,
+                        Gender: e.target.value ? e.target.value : users.Gender,
+                      })
                     }
                   />
                   <label htmlFor="male">{dTranslations.male}</label>
@@ -159,7 +172,10 @@ export default function Edit({
                     name="gender"
                     value="female"
                     onChange={(e) =>
-                      setFormData({ ...formData, Gender: e.target.value ? e.target.value : users.Gender})
+                      setFormData({
+                        ...formData,
+                        Gender: e.target.value ? e.target.value : users.Gender,
+                      })
                     }
                   />
                   <label htmlFor="female">{dTranslations.female}</label>
@@ -171,7 +187,10 @@ export default function Edit({
                     name="gender"
                     value="notAssigned"
                     onChange={(e) =>
-                      setFormData({ ...formData, Gender: e.target.value ? e.target.value : users.Gender })
+                      setFormData({
+                        ...formData,
+                        Gender: e.target.value ? e.target.value : users.Gender,
+                      })
                     }
                   />
                   <label htmlFor="notAssigned">
@@ -190,7 +209,12 @@ export default function Edit({
                 id="BirthDate"
                 value={formData.BirthDate}
                 onChange={(e) =>
-                  setFormData({ ...formData, BirthDate: e.target.value ? e.target.value : users.BirthDate })
+                  setFormData({
+                    ...formData,
+                    BirthDate: e.target.value
+                      ? e.target.value
+                      : users.BirthDate,
+                  })
                 }
                 className={`${styles.input}`}
                 required
@@ -206,23 +230,66 @@ export default function Edit({
                 id="PhoneNumber"
                 value={formData.PhoneNumber}
                 onChange={(e) =>
-                  setFormData({ ...formData, PhoneNumber: e.target.value ? e.target.value : users.PhoneNumber})
+                  setFormData({
+                    ...formData,
+                    PhoneNumber: e.target.value
+                      ? e.target.value
+                      : users.PhoneNumber,
+                  })
                 }
                 className={`${styles.input}`}
                 placeholder="+90 123 456 7890"
                 required
               />
             </div>
-            <button type="submit" className={styles.button}>
-              {actionText}
-            </button>
+            {saveLoading ? (
+              <Button
+                isLoading
+                variant="outline"
+                spinnerPlacement="start"
+                loadingText="Saving..."
+                disabled
+                colorScheme="whatsapp"
+                borderRadius={`10px`}
+                type="submit"
+              >
+                {actionText}
+              </Button>
+            ) : (
+              <Button
+                colorScheme="whatsapp"
+                borderRadius={`10px`}
+                type="submit"
+              >
+                {actionText}
+              </Button>
+            )}
           </form>
-          <button
-            onClick={() => router.push("/")}
-            className="bg-orange-500/80 rounded-xl h-10 font-semibold hover:bg-orange-600 transition duration-300 ease-in-out text-white backdrop-blur-lg"
-          >
-            {dTranslations.Back}
-          </button>
+          {backLoading ? (
+            <Button
+              isLoading
+              variant="outline"
+              spinnerPlacement="start"
+              loadingText="Redirecting"
+              disabled
+              colorScheme="orange"
+              borderRadius={`10px`}
+              onClick={() => router.push("/")}
+            >
+              {dTranslations.Back}
+            </Button>
+          ) : (
+            <Button
+              colorScheme="orange"
+              borderRadius={`10px`}
+              onClick={() => {
+                setBackLoading(true);
+                router.push("/");
+              }}
+            >
+              {dTranslations.Back}
+            </Button>
+          )}
         </div>
       )}
     </div>
