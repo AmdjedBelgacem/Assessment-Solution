@@ -1,6 +1,5 @@
 // This is to Indicate that this file is part of the main package.
-package main
-
+package handler
 // Importing necessary packages for the server functionality.
 import (
 	"fmt"
