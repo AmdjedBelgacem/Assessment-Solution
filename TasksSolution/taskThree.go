@@ -1,7 +1,6 @@
 package main
 
 // Imported fmt package to Print the result
-import "fmt"
 
 // Defined my function with an array of strings as a parameter and a string return type
 func TaskThree(myArr []string) string {
@@ -20,6 +19,5 @@ func TaskThree(myArr []string) string {
 			mostRepeated = v
 		}
 	}
-	fmt.Print("Most repeated word is:")
 	return mostRepeated
 }

@@ -2,7 +2,6 @@ package main
 
 // Imported Necessary Packages
 import (
-	"fmt"
 	"sort"
 	"strings"
 )
@@ -20,6 +19,5 @@ func taskOne(myArr []string) []string {
 		// If the number of "a" is equal in both strings or doesn't exist in a string then the length of the strings is compared to sort the array
 		return len(myArr[i]) > len(myArr[j])
 	})
-	fmt.Print("Sorted Array:")
 	return myArr
 }
