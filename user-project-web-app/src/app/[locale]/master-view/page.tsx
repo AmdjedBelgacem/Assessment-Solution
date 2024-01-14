@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import useFetchData from "../hooks/useFetchData";
+import useFetchData from "../../hooks/useFetchData";
 import { useRouter } from "next/navigation";
 import CrudComponents from "../../components/CrudComponents";
 import { useLocale } from "next-intl";

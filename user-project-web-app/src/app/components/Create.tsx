@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import useCreateData from "@/app/[locale]/hooks/useCreateData";
+import useCreateData from "@/app/hooks/useCreateData";
 import { Button } from "@chakra-ui/react";
 
 // Interface to handle the types of data im using in the formData that im posting
