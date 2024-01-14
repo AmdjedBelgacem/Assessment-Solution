@@ -1,5 +1,5 @@
 // This is to Indicate that this file is part of the main package.
-package handler
+package main
 
 // Importing necessary packages for the server functionality.
 import (
