@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import Infos from "./Infos";
-import useUpdateData from "@/app/hooks/useEditData";
-import useFetchData from "@/app/hooks/useFetchData";
+import useUpdateData from "../hooks/useEditData";
+import useFetchData from "../hooks/useFetchData";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Button } from "@chakra-ui/react";

@@ -5,7 +5,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { Waves } from "../components/svg-components/Waves";
 import ThemeToggle from "../components/ThemeToggle";
 import LanguageToggle from "../components/LanguageToggle";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -86,6 +86,7 @@ export default function LocaleLayout({
   return (
     <html lang={params.locale}>
       <body className={`${inter.className} bg-gray-200 dark:bg-gray-800`}>
+        <SpeedInsights />
         <ChakraProvider>
           <Waves />
           <div className="flex justify-between">

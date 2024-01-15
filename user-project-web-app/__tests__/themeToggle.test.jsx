@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import ThemeToggle from "@/app/components/ThemeToggle";
+import ThemeToggle from "../app/components/ThemeToggle";
 
 const localStorageMock = {
   getItem: jest.fn(),
