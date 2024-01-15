@@ -27,7 +27,7 @@ export default function CrudComponents({
     li: "w-full flex justify-between",
     dataContainer:
       "flex w-4/5 h-min-screen justify-between gap-x-2 items-center font-semibold",
-    data: "bg-white dark:bg-gray-800 p-1 rounded-xl dark:text-gray-200 shadow-2xl overflow-y-auto max-[450px]:text-[8px] max-[700px]:text-[12px] max-[700px]:pt-2 h-full",
+    data: "flex items-center justify-center bg-white dark:bg-gray-800 p-1 rounded-xl dark:text-gray-200 shadow-2xl overflow-x-auto max-[450px]:text-[8px] max-[700px]:text-[12px] max-[700px]:pt-2 h-full",
     buttonContainer: "flex items-center h-8 w-1/5 pl-1 gap-x-1 font-semibold",
     button: "w-1/2 h-full rounded-lg transition duration-300 ease-in-out",
   };

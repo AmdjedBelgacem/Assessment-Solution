@@ -69,7 +69,7 @@ export default function Edit({
   // I Like to style this way in generale or if im using tailwind, it is cleaner in general
   const styles = {
     container:
-      "flex flex-col justify-start h-min-screen max-w-2xl w-11/12 bg-white/50 shadow-2xl dark:bg-black/50 backdrop-blur-lg p-3 rounded-xl gap-y-4 text-gray-800 dark:text-gray-200",
+      "flex flex-col justify-start h-min-screen max-w-2xl w-full bg-white/50 shadow-2xl dark:bg-black/50 backdrop-blur-lg p-2 md:p-3 rounded-xl gap-y-4 text-gray-800 dark:text-gray-200",
     header: "text-4xl font-extrabold text-center pt-4 dark:text-white",
     form: "flex flex-col w-full h-min-screen justify-between bg-white/50 shadow-2xl dark:bg-black/50 backdrop-blur-lg rounded-xl p-2 gap-y-2",
     inputContainer:
@@ -77,7 +77,7 @@ export default function Edit({
     label: "w-2/5 min-[485px]:w-1/5 font-bold",
     input: "w-3/5 min-[485px]:w-4/5 pl-2 rounded-md py-1",
     loading: "h-full w-full flex justify-center items-center",
-    genderContainer: "flex w-full justify-around font-medium",
+    genderContainer: "flex flex-col md:flex-row w-full justify-around font-medium",
     genderInnerContainer: "flex gap-x-2 items-center",
   };
 

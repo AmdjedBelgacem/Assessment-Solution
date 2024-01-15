@@ -40,7 +40,7 @@ export default function Delete({
   // I Like to style this way in generale or if im using tailwind, it is cleaner in general
   const styles = {
     container:
-      "flex flex-col justify-start h-min-screen max-w-2xl w-11/12 bg-white/50 shadow-2xl dark:bg-black/50 backdrop-blur-lg p-3 rounded-xl gap-y-4",
+      "flex flex-col justify-start h-min-screen max-w-2xl w-full bg-white/50 shadow-2xl dark:bg-black/50 backdrop-blur-lg p-2 md:p-3 rounded-xl gap-y-4",
     header: "text-4xl font-extrabold text-center pt-4 dark:text-white",
     loading: "h-full w-full flex justify-center items-center",
   };

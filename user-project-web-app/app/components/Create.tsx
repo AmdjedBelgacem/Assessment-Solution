@@ -40,7 +40,7 @@ export default function Create({
   // I Like to style this way in generale or if im using tailwind, it is cleaner in general
   const styles = {
     container:
-      "flex flex-col justify-start h-min-screen max-w-2xl w-11/12 bg-white/50 shadow-2xl dark:bg-black/50 backdrop-blur-lg p-3 rounded-xl gap-y-4 dark:text-white",
+      "flex flex-col justify-start h-min-screen max-w-2xl w-full bg-white/50 shadow-2xl dark:bg-black/50 backdrop-blur-lg p-2 md:p-3 rounded-xl gap-y-4 dark:text-white",
     subContainer: "flex flex-col justify-between h-62",
     header: "text-4xl font-extrabold text-center pt-4",
     form: "flex flex-col justify-between h-full gap-y-4 bg-white/80 shadow-2xl dark:bg-black/50 backdrop-blur-lg rounded-xl p-4",
@@ -49,8 +49,10 @@ export default function Create({
       "bg-gray-200 rounded-xl border-transparent appearance-none border border-gray-300 w-full py-2 pl-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
     button:
       "bg-blue-500/90 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline",
-    genderContainer: "flex w-full justify-around font-medium",
+    genderContainer: "flex flex-col md:flex-row w-full justify-around font-medium",
     genderInnerContainer: "flex gap-x-2 items-center",
+    inputContainer:
+      "w-full flex md:flex-col gap-x-6 items-center md:items-start",
   };
   // Using the useRouter hook to redirect to the relevant page
   const router = useRouter();
@@ -140,7 +142,7 @@ export default function Create({
               required
             />
           </div>
-          <div>
+          <div className={styles.inputContainer}>
             <label htmlFor="gender" className={styles.label}>
               {dTranslations.gender}
             </label>
