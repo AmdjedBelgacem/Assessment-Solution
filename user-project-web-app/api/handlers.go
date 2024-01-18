@@ -7,19 +7,21 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/gorilla/mux" // Importing the Gorilla Mux router package for handling HTTP requests.
+	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+// Global variable to hold the MongoDB client.
 var client *mongo.Client
 
 // Initialization function that is executed once when the program starts.
 func init() {
 	// Set up the MongoDB client
 	clientOptions := options.Client().ApplyURI("mongodb+srv://AmdjdBelgacem:67x7BP23GsAtYbS9@user-management-cluster.pmkcszj.mongodb.net/?retryWrites=true&w=majority")
-	client, err := mongo.Connect(context.Background(), clientOptions)
+	var err error
+	client, err = mongo.Connect(context.Background(), clientOptions)
 	if err != nil {
 		fmt.Println(err)
 		return
