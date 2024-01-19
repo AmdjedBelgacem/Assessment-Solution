@@ -6,7 +6,7 @@ const useDeleteData = () => {
   // Use Toast for more user friendly experience
   const toast = useToast();
 
-  const deleteUser = async (userId: number) => {
+  const deleteUser = async (userId: string) => {
     try {
       // Make API request to delete user
       const response = await axios.delete(

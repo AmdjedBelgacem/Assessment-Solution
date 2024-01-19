@@ -7,7 +7,7 @@ export default function Page({
   params,
 }: {
   params: {
-    deleteId: number;
+    deleteId: string;
   };
 }) {
   // Calling the useTranslations, to control language change within the page

@@ -15,7 +15,7 @@ export default function Delete({
   actionText,
 }: {
   params: {
-    deleteId: number;
+    deleteId: string;
   };
   mTranslations: {
     id: string;
