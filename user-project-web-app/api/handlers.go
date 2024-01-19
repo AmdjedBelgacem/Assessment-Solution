@@ -5,10 +5,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"strconv"
+	"os"
 
 	"github.com/gorilla/mux"
+	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -18,8 +20,16 @@ var client *mongo.Client
 
 // Initialization function that is executed once when the program starts.
 func init() {
-	// Set up the MongoDB client
-	clientOptions := options.Client().ApplyURI("mongodb+srv://AmdjdBelgacem:67x7BP23GsAtYbS9@user-management-cluster.pmkcszj.mongodb.net/?retryWrites=true&w=majority")
+	// Load environment variables from .env.local
+	er := godotenv.Load(".env.local")
+	if er != nil {
+		fmt.Println("Error loading .env.local file")
+	}
+
+	// Use the MongoDB URI from the environment variable
+	mongoURI := os.Getenv("MONGODB_URI")
+
+	clientOptions := options.Client().ApplyURI(mongoURI)
 	var err error
 	client, err = mongo.Connect(context.Background(), clientOptions)
 	if err != nil {
@@ -68,29 +78,37 @@ func GetAllUsers(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	fmt.Println("Retrieved Users:", users)
+
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(users)
 }
 
 // Handler function to retrieve a user by ID from the database.
 func GetUserByID(w http.ResponseWriter, r *http.Request) {
+	// Extracting parameters from the request URL, including the user ID.
 	params := mux.Vars(r)
-	id, err := strconv.Atoi(params["id"])
+	userID := params["id"]
+
+	// Convert the string user ID to MongoDB ObjectID
+	objectID, err := primitive.ObjectIDFromHex(userID)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		fmt.Println(err)
 		return
 	}
 
+	// Query the database to retrieve a user by their ObjectID.
 	userCollection := client.Database("user-management-cluster").Collection("users")
 	var user User
-	err = userCollection.FindOne(context.Background(), bson.M{"_id": id}).Decode(&user)
+	err = userCollection.FindOne(context.Background(), bson.M{"_id": objectID}).Decode(&user)
 	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
 		fmt.Println(err)
 		return
 	}
 
+	// Write the user data to the response.
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(user)
 }
@@ -119,15 +137,21 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 
 // Handler function to update a user in the database by ID.
 func UpdateUser(w http.ResponseWriter, r *http.Request) {
+	// Extracting parameters (in this case, the "id" parameter) from the request URL.
 	params := mux.Vars(r)
-	id, err := strconv.Atoi(params["id"])
+
+	// Convert the string user ID to MongoDB ObjectID
+	objectID, err := primitive.ObjectIDFromHex(params["id"])
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		fmt.Println(err)
 		return
 	}
 
+	// Declaring a variable to hold the user object.
 	var updatedUser User
+
+	// Decoding the JSON request body into the user object.
 	err = json.NewDecoder(r.Body).Decode(&updatedUser)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
@@ -135,45 +159,56 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Querying the database to retrieve a user by their ObjectID.
 	userCollection := client.Database("user-management-cluster").Collection("users")
-	result, err := userCollection.UpdateOne(context.Background(), bson.M{"_id": id}, bson.M{"$set": updatedUser})
+	result, err := userCollection.UpdateOne(context.Background(), bson.M{"_id": objectID}, bson.M{"$set": updatedUser})
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		fmt.Println(err)
 		return
 	}
 
+	// Checking if the update operation affected any rows (user not found).
 	if result.ModifiedCount == 0 {
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
 
+	// Setting the HTTP response status code to 200 (OK).
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(updatedUser)
+
+	// Encoding the updated user data as JSON and writing it to the response.
+	json.NewEncoder(w).Encode(&updatedUser)
 }
 
 // Handler function to delete a user from the database by ID.
 func DeleteUser(w http.ResponseWriter, r *http.Request) {
+	// Extracting parameters (in this case, the "id" parameter) from the request URL.
 	params := mux.Vars(r)
-	id, err := strconv.Atoi(params["id"])
+
+	// Convert the string user ID to MongoDB ObjectID
+	objectID, err := primitive.ObjectIDFromHex(params["id"])
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		fmt.Println(err)
 		return
 	}
 
+	// Deleting the user record from the database by ObjectID.
 	userCollection := client.Database("user-management-cluster").Collection("users")
-	result, err := userCollection.DeleteOne(context.Background(), bson.M{"_id": id})
+	result, err := userCollection.DeleteOne(context.Background(), bson.M{"_id": objectID})
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		fmt.Println(err)
 		return
 	}
 
+	// Checking if the delete operation affected any rows (user not found).
 	if result.DeletedCount == 0 {
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
 
+	// Setting the HTTP response status code to 204 (No Content) as the resource is successfully deleted.
 	w.WriteHeader(http.StatusNoContent)
 }

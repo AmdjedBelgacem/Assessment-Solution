@@ -5,7 +5,7 @@ package main
 
 // Defining a User struct, which represents a user entity in the database.
 type User struct {
-	ID          int    `json:"id" bson:"_id,omitempty"`
+	ID          string `json:"id" bson:"_id,omitempty"`
 	Username    string `json:"username" bson:"username"`
 	FullName    string `json:"fullName" bson:"fullName"`
 	Email       string `json:"email" bson:"email"`

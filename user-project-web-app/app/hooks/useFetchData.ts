@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const useFetchData = (url: string, id?: number) => {
+const useFetchData = (url: string, id?: string) => {
   // Use State for storing data
   const [users, setUsers] = useState<any>(null);
   // Use State to Check if data is loading or not
@@ -21,7 +21,6 @@ const useFetchData = (url: string, id?: number) => {
         console.error('Error fetching data:', error);
       }
     };
-
     fetchData();
   }, [url, id]);
 

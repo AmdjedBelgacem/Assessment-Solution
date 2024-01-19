@@ -2,35 +2,40 @@
 import React, { useState, useEffect } from "react";
 import Icons from "./svg-components/Icons";
 
-// ThemeToggle component to toggle between dark and light mode.
 const ThemeToggle = () => {
-  // State variable to track the current theme mode (dark or light).
-  const [darkMode, setDarkMode] = useState<boolean>(false);
+  const [darkMode, setDarkMode] = useState<boolean>(() => {
+    // Initialize the theme mode based on the value stored in local storage.
+    const storedTheme = localStorage.getItem("theme");
+    return storedTheme === "dark";
+  });
 
-  // useEffect to load the theme mode from local storage on component mount.
   useEffect(() => {
-    // Retrieving the theme mode from local storage.
-    const theme = localStorage.getItem("theme");
-
-    // Updating the component state based on the retrieved theme mode.
-    theme === "dark" ? setDarkMode(true) : setDarkMode(false);
-  }, []);
-
-  // useEffect to update the theme mode in local storage and apply styles when darkMode changes.
-  useEffect(() => {
-    // Checking the current theme mode and updating local storage and styles accordingly.
+    // Update the class and local storage when darkMode changes.
     if (darkMode) {
-      localStorage.setItem("theme", "dark");
       document.documentElement.classList.add("dark");
     } else {
-      localStorage.setItem("theme", "light");
       document.documentElement.classList.remove("dark");
     }
   }, [darkMode]);
+
+  useEffect(() => {
+    // Add an event listener to save the theme mode to local storage before the page is unloaded.
+    const handleBeforeUnload = () => {
+      localStorage.setItem("theme", darkMode ? "dark" : "light");
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    // Remove the event listener when the component is unmounted.
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [darkMode]);
+
   return (
     <div className="p-3">
       <button
-        onClick={() => setDarkMode(!darkMode)}
+        onClick={() => setDarkMode((prevMode) => !prevMode)}
         className={`transform duration-300 ease-in ${
           darkMode ? "dark-mode rotate-[360deg]" : "light-mode rotate-0"
         }`}

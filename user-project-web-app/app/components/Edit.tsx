@@ -9,11 +9,11 @@ import { Button } from "@chakra-ui/react";
 
 // Interface to handle the types of data im using in the formData that im posting
 interface FormData {
-  FullName: string;
-  Email: string;
-  Gender: string;
-  BirthDate: string;
-  PhoneNumber: string;
+  fullName: string;
+  email: string;
+  gender: string;
+  birthDate: string;
+  phoneNumber: string;
 }
 
 // Just Getting props and handling them
@@ -23,7 +23,7 @@ export default function Edit({
   dTranslations,
   actionText,
 }: {
-  params: { editId: number };
+  params: { editId: string };
   mTranslations: {
     id: string;
     fullName: string;
@@ -52,14 +52,13 @@ export default function Edit({
   );
   // Using the useRouter hook to redirect to the relevant page
   const router = useRouter();
-  console.log(users);
   // State variable to track the form data
   const [formData, setFormData] = useState<FormData>({
-    FullName: "",
-    Email: "",
-    Gender: "",
-    BirthDate: "",
-    PhoneNumber: "",
+    fullName: "",
+    email: "",
+    gender: "",
+    birthDate: "",
+    phoneNumber: "",
   });
 
   // Button Loading for better user experience
@@ -75,7 +74,7 @@ export default function Edit({
     inputContainer:
       "w-full flex bg-white/80 shadow-2xl dark:bg-gray-600/80 backdrop-blur-lg p-2 rounded-xl items-center",
     label: "w-2/5 min-[485px]:w-1/5 font-bold",
-    input: "w-3/5 min-[485px]:w-4/5 pl-2 rounded-md py-1",
+    input: "w-3/5 min-[485px]:w-4/5 pl-2 rounded-md py-1 text-gray-800",
     loading: "h-full w-full flex justify-center items-center",
     genderContainer: "flex flex-col md:flex-row w-full justify-around font-medium",
     genderInnerContainer: "flex gap-x-2 items-center",
@@ -114,11 +113,11 @@ export default function Edit({
                 type="text"
                 name="FullName"
                 id="FullName"
-                value={formData.FullName}
+                value={formData.fullName}
                 onChange={(e) =>
                   setFormData({
                     ...formData,
-                    FullName: e.target.value ? e.target.value : users.FullName,
+                    fullName: e.target.value ? e.target.value : users.FullName,
                   })
                 }
                 placeholder="John Doe"
@@ -138,7 +137,7 @@ export default function Edit({
                 onChange={(e) =>
                   setFormData({
                     ...formData,
-                    Email: e.target.value ? e.target.value : users.Email,
+                    email: e.target.value ? e.target.value : users.Email,
                   })
                 }
                 placeholder="example@gmail.com"
@@ -159,7 +158,7 @@ export default function Edit({
                     onChange={(e) =>
                       setFormData({
                         ...formData,
-                        Gender: e.target.value ? e.target.value : users.Gender,
+                        gender: e.target.value ? e.target.value : users.Gender,
                       })
                     }
                   />
@@ -174,7 +173,7 @@ export default function Edit({
                     onChange={(e) =>
                       setFormData({
                         ...formData,
-                        Gender: e.target.value ? e.target.value : users.Gender,
+                        gender: e.target.value ? e.target.value : users.Gender,
                       })
                     }
                   />
@@ -189,7 +188,7 @@ export default function Edit({
                     onChange={(e) =>
                       setFormData({
                         ...formData,
-                        Gender: e.target.value ? e.target.value : users.Gender,
+                        gender: e.target.value ? e.target.value : users.Gender,
                       })
                     }
                   />
@@ -207,11 +206,11 @@ export default function Edit({
                 type="date"
                 name="BirthDate"
                 id="BirthDate"
-                value={formData.BirthDate}
+                value={formData.birthDate}
                 onChange={(e) =>
                   setFormData({
                     ...formData,
-                    BirthDate: e.target.value
+                    birthDate: e.target.value
                       ? e.target.value
                       : users.BirthDate,
                   })
@@ -228,11 +227,11 @@ export default function Edit({
                 type="text"
                 name="PhoneNumber"
                 id="PhoneNumber"
-                value={formData.PhoneNumber}
+                value={formData.phoneNumber}
                 onChange={(e) =>
                   setFormData({
                     ...formData,
-                    PhoneNumber: e.target.value
+                    phoneNumber: e.target.value
                       ? e.target.value
                       : users.PhoneNumber,
                   })

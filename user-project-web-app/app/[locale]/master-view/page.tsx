@@ -68,7 +68,7 @@ export default function MasterView({ params }: MasterViewProps) {
   const filteredUsers = users
     ? users.filter((user: any) =>
         // Using a case-insensitive regular expression to test if the filterText matches the username.
-        new RegExp(filterText, "i").test(user.Username)
+        new RegExp(filterText, "i").test(user.fullName)
       )
     : [];
 
@@ -86,7 +86,7 @@ export default function MasterView({ params }: MasterViewProps) {
               type="text"
               value={filterText}
               onChange={handleFilterChange}
-              placeholder="Filter by username"
+              placeholder="Filter by Full name"
               className={`${styles.filter}`}
             />
             {buttonLoading ? (
@@ -123,13 +123,10 @@ export default function MasterView({ params }: MasterViewProps) {
             )}
           </div>
           <ul className={`${styles.headersContainer}`}>
-            <li className={`${styles.headers} w-[10%] text-center`}>
-              {params.translations.id}
-            </li>
-            <li className={`${styles.headers} w-[40%] pl-2 text-start`}>
+            <li className={`${styles.headers} w-[30%] pl-2 text-start`}>
               {params.translations.fullName}
             </li>
-            <li className={`${styles.headers} w-[50%] pl-2 text-start`}>
+            <li className={`${styles.headers} w-[70%] pl-2 text-start`}>
               {params.translations.email}
             </li>
             <li className={`${styles.headers} w-1/4`}>

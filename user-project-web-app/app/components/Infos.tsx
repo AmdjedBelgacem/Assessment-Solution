@@ -7,15 +7,13 @@ export default function Infos({
   dTranslations,
 }: {
   user: {
-    ID: number;
-    Username: string;
-    FullName: string;
-    Email: string;
-    Gender: string;
-    BirthDate: string;
-    PhoneNumber: string;
-    CreatedAt?: string;
-    UpdatedAt?: string;
+    id: number;
+    username: string;
+    fullName: string;
+    email: string;
+    gender: string;
+    birthDate: string;
+    phoneNumber: string;
   };
   mTranslations: {
     id: string;
@@ -47,45 +45,33 @@ export default function Infos({
       <ul className={`${styles.innerContainer}`}>
         <li className={`${styles.li} font-semibold`}>
           <p className={`${styles.p} font-bold`}>{mTranslations.id} </p>
-          <p className={`${styles.p}`}>{user.ID}</p>
+          <p className={`${styles.p}`}>{user.id}</p>
         </li>
         <li className={`${styles.li} font-semibold`}>
           <p className={`${styles.p} font-bold`}>{dTranslations.username} </p>
-          <p className={`${styles.p}`}>{user.Username}</p>
+          <p className={`${styles.p}`}>{user.username}</p>
         </li>
         <li className={`${styles.li} font-semibold`}>
           <p className={`${styles.p} font-bold`}>{mTranslations.fullName} </p>
-          <p className={`${styles.p}`}>{user.FullName}</p>
+          <p className={`${styles.p}`}>{user.fullName}</p>
         </li>
         <li className={`${styles.li} font-semibold`}>
           <p className={`${styles.p} font-bold`}>{mTranslations.email} </p>
-          <p className={`${styles.p}`}>{user.Email}</p>
+          <p className={`${styles.p}`}>{user.email}</p>
         </li>
         <li className={`${styles.li} font-semibold`}>
           <p className={`${styles.p} font-bold`}>{dTranslations.gender} </p>
-          <p className={`${styles.p}`}>{user.Gender}</p>
+          <p className={`${styles.p}`}>{user.gender}</p>
         </li>
         <li className={`${styles.li} font-semibold`}>
           <p className={`${styles.p} font-bold`}>{dTranslations.birthDate} </p>
-          <p className={`${styles.p}`}>{user.BirthDate}</p>
+          <p className={`${styles.p}`}>{user.birthDate}</p>
         </li>
         <li className={`${styles.li} font-semibold`}>
           <p className={`${styles.p} font-bold`}>
             {dTranslations.phoneNumber}{" "}
           </p>
-          <p className={`${styles.p}`}>{user.PhoneNumber}</p>
-        </li>
-        <li className={`${styles.li}`}>
-          <p className={`${styles.p} font-bold`}>{dTranslations.createdAt}</p>
-          <p className={`${styles.p} font-semibold`}>
-            {user.CreatedAt?.slice(0, 10)} {user.CreatedAt?.slice(11, 18)}
-          </p>
-        </li>
-        <li className={`${styles.li}`}>
-          <p className={`${styles.p} font-bold`}>{dTranslations.lastUpdated}</p>
-          <p className={`${styles.p} font-semibold`}>
-            {user.UpdatedAt?.slice(0, 10)} {user.UpdatedAt?.slice(11, 18)}
-          </p>
+          <p className={`${styles.p}`}>{user.phoneNumber}</p>
         </li>
       </ul>
     </div>
