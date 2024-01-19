@@ -1,5 +1,5 @@
 // This is to Indicate that this file is part of the main package.
-package main
+package handler
 
 // Importing the GORM library for it to work with the database.
 
